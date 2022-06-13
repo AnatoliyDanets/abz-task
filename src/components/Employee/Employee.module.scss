@@ -1,0 +1,83 @@
+@import "../../stylesheet/utils/vars.scss";
+@import "../../stylesheet/utils/mixin.scss";
+
+.employee__item {
+  // position: relative;
+  padding: 20px;
+  background-color: $secondary-background-color;
+  border-radius: 10px;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  @media screen and (min-width: 768px) {
+    flex-basis: calc(100% / 2 - 56px);
+    margin-left: 16px;
+    margin-top: 16px;
+  }
+  @media screen and (min-width: 1024px) {
+    flex-basis: calc(100% / 3 - 69px);
+    margin-left: 29px;
+    margin-top: 29px;
+  }
+}
+
+.employee__item:not(:last-child) {
+  margin-bottom: 20px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0;
+  }
+}
+
+.employee__image {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+.employee__title {
+  margin: 0px 0px 20px;
+  @include font(400, 16px, 24px);
+  text-align: center;
+  color: $secondary-font-color;
+}
+.employee__text {
+  padding: 0;
+  margin: 0;
+  font-style: normal;
+  @include font(400, 16px, 24px);
+  text-align: center;
+  color: $secondary-font-color;
+}
+
+.employee__item::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.employee__link {
+  position: relative;
+  text-decoration: none;
+  display: block;
+  padding: 0;
+  margin: 0;
+  font-style: normal;
+  @include font(400, 16px, 26px);
+  text-align: center;
+  color: $secondary-font-color;
+  &:hover::before {
+    content: attr(data-title);
+    @include flex-center;
+    z-index: 1;
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    padding: 3px 16px;
+    @include font(400, 16px, 26px);
+    color: $primary-font-color;
+    background-color: $tooltip--background-color-color;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -o-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+  }
+}

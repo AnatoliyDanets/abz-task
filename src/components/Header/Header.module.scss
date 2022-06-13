@@ -1,0 +1,35 @@
+@import "../../stylesheet/utils/vars.scss";
+@import "../../stylesheet/utils/mixin.scss";
+
+.header {
+  padding: 13px 0px;
+
+
+}
+.header__wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.header__logo {
+  display: flex;
+  align-items: center;
+  margin-right: 14px;
+  @media screen and (min-width: 768px) {
+    margin-right: unset;
+  }
+}
+.header__logo_icon{
+  margin-right: 1.97px;
+}
+
+.header__btns {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  &_item:not(:last-child) {
+    margin-right: 10px;
+  }
+}

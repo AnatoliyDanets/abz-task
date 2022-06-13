@@ -1,0 +1,39 @@
+@import "../../stylesheet/utils/vars.scss";
+@import "../../stylesheet/utils/mixin.scss";
+
+.employees {
+  padding: 140px 0px 70px;
+  text-align: center;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+.employees__list {
+  margin: 0;
+  margin-bottom: 50px;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -16px;
+    margin-top: -16px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -29px;
+    margin-top: -29px;
+  }
+}
+.addEmployee {
+  padding: 70px 0px 100px;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
