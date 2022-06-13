@@ -1,5 +1,5 @@
 import s from "./UserSuccess.module.scss";
-import { ReactComponent as UserResolve } from "../../images/employees/successImage.svg";
+import { ReactComponent as UserResolve } from "../../images/icon/successImage.svg";
 import { Section } from "../Section/Section";
 import SectionTitle from "../SectionTitle/SectionTitle";
 

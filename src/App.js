@@ -1,17 +1,19 @@
 import "./App.scss";
-import { Suspense, lazy } from "react";
 import Loader from "./components/Loader/Loader";
-const Header = lazy(() => import("./components/Header/Header"));
-const MainComponent = lazy(() =>
-  import("./components/MainComponent/MainComponent")
-);
+import loadable from "@loadable/component";
+const Header = loadable(() => import("./components/Header/Header"));
+const MainComponent = loadable(() =>
+  import("./components/MainComponent/MainComponent"), {
+    Loader: () => Loader
+  })
+
 
 function App() {
   return (
-    <Suspense fallback={<Loader />}>
+    <>
       <Header />
       <MainComponent />
-    </Suspense>
+    </>
   );
 }
 

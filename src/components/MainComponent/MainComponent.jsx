@@ -1,7 +1,8 @@
 import Main from "../Main/Main";
-import { lazy } from "react";
-const Hero= lazy(() => import("../Hero/Hero"));
-const Employees=lazy(()=>import('../Employees/Employees'))
+import loadable from "@loadable/component";
+
+const Hero= loadable(() => import("../Hero/Hero"));
+const Employees=loadable(()=>import('../Employees/Employees'))
 export default function MainComponent() {
   return (
     <Main>

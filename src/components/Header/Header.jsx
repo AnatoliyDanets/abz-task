@@ -1,6 +1,6 @@
 import s from "./Header.module.scss";
-import { ReactComponent as Logo } from "../../images/Group.svg";
-import { ReactComponent as TextLogo } from "../../images/TextLogo.svg";
+import { ReactComponent as Logo } from "../../images/icon/Group.svg";
+import { ReactComponent as TextLogo } from "../../images/icon/TextLogo.svg";
 import ButtonsAuth from "../ButtonsAuth/ButtonsAuth";
 import Container from "../Container/Container";
 export default function Header() {

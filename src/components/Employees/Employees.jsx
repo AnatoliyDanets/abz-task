@@ -1,4 +1,4 @@
-import { lazy, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonsAuth from "../ButtonsAuth/ButtonsAuth";
 import { Section } from "../Section/Section";
 import Container from "../Container/Container";
@@ -6,9 +6,11 @@ import s from "./Employees.module.scss";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import { getUsers } from "../../services/Api";
 import Loader from "../Loader/Loader";
+import loadable from "@loadable/component";
+import { useCallback } from "react";
 
-const Employee = lazy(() => import("../Employee/Employee"));
-const CreateForm = lazy(() => import("../CreateForm/CreateForm"));
+const Employee = loadable(() => import("../Employee/Employee"));
+const CreateForm = loadable(() => import("../CreateForm/CreateForm"));
 export default function Employees() {
   const [users, setUsers] = useState([]);
   const [totalPages, setTotalPages] = useState(null);
@@ -16,7 +18,7 @@ export default function Employees() {
   const [hidden, setHidden] = useState(true);
   const [show, setShow] = useState(false);
 
-  const fetchApi = () => {
+  const fetchApi =useCallback(() => {
     getUsers(1)
       .then((data) => {
         console.log(data.users);
@@ -27,14 +29,14 @@ export default function Employees() {
       })
       .catch((error) => console.log(error))
       .finally(setShow(true));
-  };
+  },[]);
 
   useEffect(() => {
     fetchApi();
     // eslint-disable-next-line
   }, []);
 
-  const getNextUsers = () => {
+  const getNextUsers =useCallback(() => {
     if (page === totalPages) {
       setHidden(false);
     }
@@ -47,7 +49,7 @@ export default function Employees() {
       })
       .catch((error) => console.log(error))
       .finally(setShow(true));
-  };
+  },[page,totalPages]);
   return (
     <>
       <Section className={s.employees}>
