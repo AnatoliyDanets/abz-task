@@ -1,4 +1,3 @@
-import "./App.scss";
 import Loader from "./components/Loader/Loader";
 import loadable from "@loadable/component";
 const Header = loadable(() => import("./components/Header/Header"));

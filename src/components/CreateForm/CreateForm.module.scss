@@ -25,6 +25,9 @@
 .form__inputs_wrapper:not(:last-child) {
   margin-bottom: 25px;
 }
+.form__input_wrapper{
+  position: relative;
+}
 .form__input {
   padding: 0;
   width: 326px;
@@ -52,10 +55,18 @@
   }
 }
 
+.form__error {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+  z-index: 100;
+}
+
 .form__input_tel {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
 
 .form__label {
@@ -80,7 +91,6 @@
     color: $secondary-font-color;
   }
   &_list {
-    list-style: none;
     margin: 0;
     padding: 0;
     margin-bottom: 47px;
@@ -91,7 +101,6 @@
 
   &_item {
     position: relative;
-
     display: flex;
     align-items: baseline;
   }
@@ -134,7 +143,6 @@
     margin: 0;
     border-radius: 50%;
     opacity: 0;
-
   }
 
   &_input:checked + &_label::after {

@@ -10,7 +10,7 @@ export async function addUsers(data, token) {
     method: "POST",
     body: data,
     headers: {
-      Token: token, // get token with GET api/v1/token method
+      Token: token, 
     },
   });
   return res;
@@ -28,4 +28,3 @@ export const getPositions = async () => {
   return positions;
 };
 
-// export const Context = React.createContext(ApiService);

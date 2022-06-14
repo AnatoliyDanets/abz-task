@@ -25,9 +25,6 @@
 }
 
 .header__btns {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   &_item:not(:last-child) {
     margin-right: 10px;

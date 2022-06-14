@@ -1,8 +1,8 @@
 @import "../../stylesheet/utils/vars.scss";
 @import "../../stylesheet/utils/mixin.scss";
 
+
 .employee__item {
-  // position: relative;
   padding: 20px;
   background-color: $secondary-background-color;
   border-radius: 10px;
@@ -35,14 +35,12 @@
   margin-bottom: 20px;
 }
 .employee__title {
-  margin: 0px 0px 20px;
+  margin-bottom:20px;
   @include font(400, 16px, 24px);
   text-align: center;
   color: $secondary-font-color;
 }
 .employee__text {
-  padding: 0;
-  margin: 0;
   font-style: normal;
   @include font(400, 16px, 24px);
   text-align: center;
@@ -55,7 +53,6 @@
 }
 .employee__link {
   position: relative;
-  text-decoration: none;
   display: block;
   padding: 0;
   margin: 0;
@@ -73,7 +70,7 @@
     padding: 3px 16px;
     @include font(400, 16px, 26px);
     color: $primary-font-color;
-    background-color: $tooltip--background-color-color;
+    background-color: $tooltip--background-color;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     -o-border-radius: 4px;

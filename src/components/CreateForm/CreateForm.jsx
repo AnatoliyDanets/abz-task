@@ -3,7 +3,8 @@ import { useState, useEffect, useRef } from "react";
 import Modal from "../Modal/Modal";
 import UserSuccess from "../UserSuccess/UserSuccess";
 import ButtonsAuth from "../ButtonsAuth/ButtonsAuth";
-import { addUsers, getToken, getPositions } from "../../services/Api";
+import { addUsers, getToken, getPositions } from "../../services/fetch-api";
+import { Error } from "../Errors";
 import s from "./CreateForm.module.scss";
 
 export default function CreateForm({ fetchApi }) {
@@ -16,11 +17,66 @@ export default function CreateForm({ fetchApi }) {
   const [load, setLoad] = useState("Upload your photo");
   const [disabled, setDisabled] = useState(false);
   const [modal, setModal] = useState(false);
+  const [errorName, setErrorName] = useState(false);
+  const [textError, setTextError] = useState("Invalid");
+  const [errorEmail, setErrorEmail] = useState(false);
+  const [textErrorEmail, setTextErrorEmail] = useState("Invalid");
+  const [errorPhone, setErrorPhone] = useState(false);
+  const [textErrorPhone, setTextErrorPhone] = useState("Invalid");
+  const [errorPhoto, setErrorPhoto] = useState(false);
+  const [textErrorPhoto, setTextErrorPhoto] = useState("Invalid");
+
+  const photo = useRef();
 
   const toggleModal = () => {
     setModal((state) => !state);
   };
-  const photo = useRef();
+
+  const handleBlur = (e) => {
+    const { name, validity } = e.target;
+    switch (name) {
+      case "name":
+        if (validity.patternMismatch || validity.tooShort || validity.tooLong) {
+          setErrorName(true);
+          setTextError(
+            Error.errorName(
+              validity.tooShort,
+              validity.tooLong,
+              validity.patternMismatch
+            )
+          );
+        } else {
+          setErrorName(false);
+        }
+        break;
+      case "email":
+        if (validity.patternMismatch || validity.tooShort || validity.tooLong) {
+          setErrorEmail(true);
+          setTextErrorEmail(
+            Error.errorEmail(
+              validity.tooShort,
+              validity.tooLong,
+              validity.patternMismatch
+            )
+          );
+        } else {
+          setErrorEmail(false);
+        }
+        break;
+      case "tel":
+        if (validity.patternMismatch) {
+          setErrorPhone(true);
+          setTextErrorPhone(Error.errorPhone(validity.patternMismatch));
+        } else {
+          setErrorPhone(false);
+        }
+        break;
+
+      default:
+        break;
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
@@ -38,11 +94,77 @@ export default function CreateForm({ fetchApi }) {
     }
   };
 
+  const handleFileChange = () => {
+    setLoad(photo.current.files[0]?.name ?? "Upload your photo");
+
+    const size = 5242880;
+
+    if (photo.current.files[0]?.size > size) {
+      setErrorPhoto(true);
+      setTextErrorPhoto("Big size");
+      return;
+    } else {
+      setErrorPhoto(false);
+    }
+
+    if (photo.current.files[0]?.type !== "image/jpeg") {
+      setErrorPhoto(true);
+      setTextErrorPhoto("Only format jpeg");
+      return;
+    } else {
+      setErrorPhoto(false);
+    }
+    console.log(photo.current.files[0].type);
+
+    const reader = new FileReader();
+
+    //Read the contents of Image File.
+    reader.readAsDataURL(photo.current.files[0]);
+    reader.onload = function (e) {
+      //Initiate the JavaScript Image object.
+      const image = new Image();
+
+      //Set the Base64 string return from FileReader as source.
+      image.src = e.target.result;
+
+      //Validate the File Height and Width.
+      image.onload = function () {
+        const height = this.height;
+        const width = this.width;
+        if (height < 70 || width < 70) {
+          setErrorPhoto(true);
+          setTextErrorPhoto("Minimum size 70x70");
+          return;
+        } else {
+          setErrorPhoto(false);
+        }
+      };
+    };
+  };
+
   useEffect(() => {
     setDisabled(
-      !name || !phone || !email || !posId || load === "Upload your photo"
+      !name ||
+        !phone ||
+        !email ||
+        !posId ||
+        load === "Upload your photo" ||
+        errorEmail ||
+        errorName ||
+        errorPhone ||
+        errorPhoto
     );
-  }, [name, email, phone, posId, load]);
+  }, [
+    name,
+    email,
+    phone,
+    posId,
+    load,
+    errorName,
+    errorEmail,
+    errorPhone,
+    errorPhoto,
+  ]);
 
   useEffect(() => {
     getToken()
@@ -94,48 +216,63 @@ export default function CreateForm({ fetchApi }) {
       <form onSubmit={addEmployee} className={s.form}>
         <div className={s.form__wrapper}>
           <div className={s.form__inputs_wrapper}>
-            <input
-              type="text"
-              className={s.form__input}
-              name="name"
-              value={name}
-              onChange={handleChange}
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              minLength={2}
-              maxLength={60}
-              placeholder="Your name"
-              style={{ marginBottom: "50px" }}
-              required
-            />
-
-            <input
-              type="email"
-              name="email"
-              className={s.form__input}
-              value={email}
-              onChange={handleChange}
-              placeholder="Email"
-              pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
-              minLength={2}
-              maxLength={100}
-              style={{ marginBottom: "50px" }}
-              required
-            />
-            <div className={s.form__input_tel}>
+            <div className={s.form__input_wrapper}>
+              {errorName && <span className={s.form__error}>{textError}</span>}
               <input
-                type="tel"
-                name="tel"
-                value={phone}
-                onChange={handleChange}
+                type="text"
                 className={s.form__input}
-                placeholder="Phone"
-                pattern="^[\+]{0,1}380([0-9]{9})$"
-                style={{ marginBottom: "4px" }}
+                name="name"
+                value={name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder="Your name"
+                pattern="[a-zA-Z'-'\s]*"
+                minLength={2}
+                maxLength={60}
+                style={{ marginBottom: "50px" }}
                 required
               />
-              <label className={s.form__label} name="tel">
-                +38 (XXX) XXX - XX - XX{" "}
-              </label>
+            </div>
+            <div className={s.form__input_wrapper}>
+              {errorEmail && (
+                <span className={s.form__error}>{textErrorEmail}</span>
+              )}
+              <input
+                type="email"
+                name="email"
+                className={s.form__input}
+                value={email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder="Email"
+                pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                minLength={2}
+                maxLength={100}
+                style={{ marginBottom: "50px" }}
+                required
+              />
+            </div>
+            <div className={s.form__input_wrapper}>
+              {errorPhone && (
+                <span className={s.form__error}>{textErrorPhone}</span>
+              )}
+              <div className={s.form__input_tel}>
+                <input
+                  type="tel"
+                  name="tel"
+                  value={phone}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={s.form__input}
+                  placeholder="Phone"
+                  pattern="^[\+]{0,1}380([0-9]{9})$"
+                  style={{ marginBottom: "4px" }}
+                  required
+                />
+                <label className={s.form__label} name="tel">
+                  +38 (XXX) XXX - XX - XX{" "}
+                </label>
+              </div>
             </div>
           </div>
           <div className={s.form__inputs_files}>
@@ -159,27 +296,31 @@ export default function CreateForm({ fetchApi }) {
                 </li>
               ))}
             </ul>
-            <div className={s.file}>
-              <label
-                htmlFor="file-upload"
-                data-title={load}
-                className={s.form__file_input}
-              >
-                Upload
-              </label>
+            <div className={s.form__input_wrapper}>
+              {errorPhoto && (
+                <span className={s.form__error}>{textErrorPhoto}</span>
+              )}
+              <div className={s.file}>
+                <label
+                  htmlFor="file-upload"
+                  data-title={load}
+                  className={s.form__file_input}
+                >
+                  Upload
+                </label>
 
-              <input
-                type="file"
-                id="file-upload"
-                accept=".jpeg, .jpg"
-                ref={photo}
-                title="Minimum size of photo 70x70px. The photo format must be jpeg/jpg type. The photo size must not be greater than 5 Mb."
-                className={s.form__input_file}
-                required
-                onChange={() =>
-                  setLoad(photo.current.files[0]?.name ?? "Upload your photo")
-                }
-              />
+                <input
+                  name="photo"
+                  type="file"
+                  id="file-upload"
+                  accept=".jpeg, .jpg"
+                  ref={photo}
+                  title="Minimum size of photo 70x70px. The photo format must be jpeg/jpg type. The photo size must not be greater than 5 Mb."
+                  className={s.form__input_file}
+                  required
+                  onChange={handleFileChange}
+                />
+              </div>
             </div>
           </div>
         </div>
