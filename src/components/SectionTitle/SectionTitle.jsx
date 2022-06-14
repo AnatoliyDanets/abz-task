@@ -1,8 +1,5 @@
-import s from './SectionTitle.module.scss'
+import s from "./SectionTitle.module.scss";
 
-export default function SectionTitle({title}) {
-    return (
-        <h2 className={s.title}>{title}</h2>
-    )
-    
+export default function SectionTitle({ title }) {
+  return <h2 className={s.title}>{title}</h2>;
 }

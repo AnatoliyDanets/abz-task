@@ -1,6 +1,3 @@
-
-export const Section=({className, children})=> {
-    return(
-        <section  className={className}>{children}</section>
-    )
-}
+export const Section = ({ className, children }) => {
+  return <section className={className}>{children}</section>;
+};

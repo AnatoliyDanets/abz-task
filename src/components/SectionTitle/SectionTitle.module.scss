@@ -1,11 +1,11 @@
 @import "../../stylesheet/utils/vars.scss";
 @import "../../stylesheet/utils/mixin.scss";
 
-.title{
-    margin-bottom:50px;
-    font-style: normal;
-    @include font(400, 40px, 40px);
-    @include flex-center;
-    text-align: center;
-    color: $secondary-font-color;
+.title {
+  margin-bottom: 50px;
+  font-style: normal;
+  @include font(400, 40px, 40px);
+  @include flex-center;
+  text-align: center;
+  color: $secondary-font-color;
 }

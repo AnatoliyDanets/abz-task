@@ -1,13 +1,6 @@
 @import "../../stylesheet/utils/vars.scss";
 @import "../../stylesheet/utils/mixin.scss";
 
-.title {
-  @include font(400, 40px, 40px);
-  display: flex;
-  align-items: flex-end;
-  text-align: center;
-  color: $secondary-font-color;
-}
 .form {
   display: flex;
   flex-direction: column;
@@ -23,9 +16,9 @@
   align-items: center;
 }
 .form__inputs_wrapper:not(:last-child) {
-  margin-bottom: 25px;
+  margin-bottom: 43px;
 }
-.form__input_wrapper{
+.form__input_wrapper {
   position: relative;
 }
 .form__input {
@@ -44,7 +37,7 @@
   }
 
   &:invalid:not(:placeholder-shown) {
-    border: 1px solid red;
+    border: 1px solid $label-input-error;
   }
 
   &::placeholder {
@@ -53,27 +46,53 @@
     color: $label-input-color;
     opacity: 1;
   }
+
 }
 
 .form__error {
   position: absolute;
-  top: -10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: red;
+  bottom: 34px;
+  left: 16px;
+  @include font(400, 12px, 14px);
+
+  color: $label-input-error;
   z-index: 100;
 }
+
+
 
 .form__input_tel {
   display: flex;
   flex-direction: column;
 }
+.form__error_tel{
+  position: absolute;
+  bottom: -16px;
+  left: 16px;
+  @include font(400, 12px, 14px);
+  color: $label-input-error;
+  z-index: 100;
+}
 
+.form__error_file{
+  font-family: 'Asap', sans-serif;
+  position: absolute;
+  bottom: 34px;
+  left: 16px;
+  @include font(400, 12px, 14px);
+
+  color: $label-input-error;
+  z-index: 100;
+}
 .form__label {
+  position: absolute;
+  bottom:-16px;
+  left: 0px;
   @include font(400, 12px, 14px);
   color: $label-input-color;
   text-indent: 16px;
 }
+
 .form__inputs_files {
   display: flex;
   flex-direction: column;
@@ -164,7 +183,7 @@
   visibility: hidden;
 }
 
-.form__file_input {
+.form__file_label {
   position: absolute;
   top: 0;
   left: 0;
@@ -175,7 +194,7 @@
   border-radius: 4px 0px 0px 4px;
 }
 
-.form__file_input::before {
+.form__file_label::before {
   content: attr(data-title);
   position: absolute;
   top: -1px;
@@ -187,6 +206,38 @@
   display: flex;
   align-items: center;
   border: 1px solid $border-input-color;
+  border-radius: 0px 4px 4px 0px;
+  border-left: none;
+  font-style: normal;
+  @include font(400, 16px, 26px);
+  color: $label-input-color;
+  @media screen and (min-width: 768px) {
+    width: 296px;
+  }
+}
+
+.form__file_error {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 79px;
+  @include flex-center;
+  border: 2px solid $label-input-error;
+  border-radius: 4px 0px 0px 4px;
+}
+.form__file_error::before {
+  content: attr(data-title);
+  position: absolute;
+  top: -2px;
+  left: 81px;
+  height: 50px;
+  width: 241px;
+  background-color: $primary-background-color;
+  text-indent: 16px;
+  display: flex;
+  align-items: center;
+  border: 2px solid $label-input-error;
   border-radius: 0px 4px 4px 0px;
   border-left: none;
   font-style: normal;

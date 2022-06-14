@@ -81,13 +81,13 @@ export default function CreateForm({ fetchApi }) {
     const { name, value } = e.target;
     switch (name) {
       case "name":
-        setName(value);
+        setName(value.trim());
         break;
       case "email":
-        setEmail(value);
+        setEmail(value.trim());
         break;
       case "tel":
-        setPhone(value);
+        setPhone(value.trim());
         break;
       default:
         break;
@@ -101,7 +101,7 @@ export default function CreateForm({ fetchApi }) {
 
     if (photo.current.files[0]?.size > size) {
       setErrorPhoto(true);
-      setTextErrorPhoto("Big size");
+      setTextErrorPhoto("The photo size must not be greater than 5 Mb");
       return;
     } else {
       setErrorPhoto(false);
@@ -114,7 +114,6 @@ export default function CreateForm({ fetchApi }) {
     } else {
       setErrorPhoto(false);
     }
-    console.log(photo.current.files[0].type);
 
     const reader = new FileReader();
 
@@ -253,10 +252,14 @@ export default function CreateForm({ fetchApi }) {
               />
             </div>
             <div className={s.form__input_wrapper}>
-              {errorPhone && (
-                <span className={s.form__error}>{textErrorPhone}</span>
-              )}
               <div className={s.form__input_tel}>
+                {errorPhone ? (
+                  <span className={s.form__error_tel}>{textErrorPhone}</span>
+                ) : (
+                  <label className={s.form__label} name="tel">
+                    +38 (XXX) XXX - XX - XX{" "}
+                  </label>
+                )}
                 <input
                   type="tel"
                   name="tel"
@@ -266,12 +269,8 @@ export default function CreateForm({ fetchApi }) {
                   className={s.form__input}
                   placeholder="Phone"
                   pattern="^[\+]{0,1}380([0-9]{9})$"
-                  style={{ marginBottom: "4px" }}
                   required
                 />
-                <label className={s.form__label} name="tel">
-                  +38 (XXX) XXX - XX - XX{" "}
-                </label>
               </div>
             </div>
           </div>
@@ -298,28 +297,39 @@ export default function CreateForm({ fetchApi }) {
             </ul>
             <div className={s.form__input_wrapper}>
               {errorPhoto && (
-                <span className={s.form__error}>{textErrorPhoto}</span>
+                <span className={s.form__error_file}>{textErrorPhoto}</span>
               )}
               <div className={s.file}>
-                <label
-                  htmlFor="file-upload"
-                  data-title={load}
-                  className={s.form__file_input}
-                >
-                  Upload
-                </label>
-
-                <input
-                  name="photo"
-                  type="file"
-                  id="file-upload"
-                  accept=".jpeg, .jpg"
-                  ref={photo}
-                  title="Minimum size of photo 70x70px. The photo format must be jpeg/jpg type. The photo size must not be greater than 5 Mb."
-                  className={s.form__input_file}
-                  required
-                  onChange={handleFileChange}
-                />
+                <>
+                  {errorPhoto ? (
+                    <label
+                      htmlFor="file-upload"
+                      data-title={load}
+                      className={s.form__file_error}
+                    >
+                      Upload
+                    </label>
+                  ) : (
+                    <label
+                      htmlFor="file-upload"
+                      data-title={load}
+                      className={s.form__file_label}
+                    >
+                      Upload
+                    </label>
+                  )}
+                  <input
+                    name="photo"
+                    type="file"
+                    id="file-upload"
+                    accept=".jpeg, .jpg"
+                    ref={photo}
+                    title="Minimum size of photo 70x70px. The photo format must be jpeg/jpg type. The photo size must not be greater than 5 Mb."
+                    className={s.form__input_file}
+                    required
+                    onChange={handleFileChange}
+                  />
+                </>
               </div>
             </div>
           </div>

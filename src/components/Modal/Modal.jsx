@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import s from "./Modal.module.scss";
 import { createPortal } from "react-dom";
+
 const modalRoot = document.querySelector("#modal-root");
+
 export default function Modal({ onClose, children }) {
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);

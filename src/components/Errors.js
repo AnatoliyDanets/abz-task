@@ -5,7 +5,7 @@ export const Error = {
     } else if (long) {
       return "Max 60 letters";
     } else if (pattern) {
-      return "Only letters";
+      return "Only letters. Example: Jhon";
     }
   },
   errorEmail(short, long, pattern) {
@@ -19,7 +19,7 @@ export const Error = {
   },
   errorPhone(pattern) {
     if (pattern) {
-      return "Example:+380671234567";
+      return "Example: +380671234567";
     }
   },
 };
