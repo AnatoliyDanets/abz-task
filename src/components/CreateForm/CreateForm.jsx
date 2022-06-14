@@ -95,7 +95,10 @@ export default function CreateForm({ fetchApi }) {
   };
 
   const handleFileChange = () => {
-    setLoad(photo.current.files[0]?.name ?? "Upload your photo");
+    const arrStr = photo.current.files[0]?.name.split(".");
+    const newStr = [...arrStr[0].slice(0, 6), ".", ...arrStr[1]].join("");
+
+    setLoad(newStr ?? "Upload your photo");
 
     const size = 5242880;
 

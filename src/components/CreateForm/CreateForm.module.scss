@@ -46,7 +46,6 @@
     color: $label-input-color;
     opacity: 1;
   }
-
 }
 
 .form__error {
@@ -54,18 +53,15 @@
   bottom: 34px;
   left: 16px;
   @include font(400, 12px, 14px);
-
   color: $label-input-error;
   z-index: 100;
 }
-
-
 
 .form__input_tel {
   display: flex;
   flex-direction: column;
 }
-.form__error_tel{
+.form__error_tel {
   position: absolute;
   bottom: -16px;
   left: 16px;
@@ -74,8 +70,8 @@
   z-index: 100;
 }
 
-.form__error_file{
-  font-family: 'Asap', sans-serif;
+.form__error_file {
+  font-family: "Asap", sans-serif;
   position: absolute;
   bottom: 34px;
   left: 16px;
@@ -86,7 +82,7 @@
 }
 .form__label {
   position: absolute;
-  bottom:-16px;
+  bottom: -16px;
   left: 0px;
   @include font(400, 12px, 14px);
   color: $label-input-color;
