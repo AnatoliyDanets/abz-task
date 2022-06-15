@@ -1,7 +1,7 @@
 import Section from "../Section";
 import Container from "../Container";
 import SectionTitle from "../SectionTitle";
-import CreateForm from "../CreateForm";
+import SignUpForm from "../SignUpForm";
 import s from "./SectionAddEmployees.module.scss";
 
 export default function SectionAddEmployees({ fetchApi }) {
@@ -9,7 +9,7 @@ export default function SectionAddEmployees({ fetchApi }) {
     <Section className={s.addEmployee}>
       <Container color={{ backgroundColor: "#f8f8f8" }}>
         <SectionTitle title={"Working with POST request"} />
-        <CreateForm fetchApi={fetchApi} />
+        <SignUpForm fetchApi={fetchApi} />
       </Container>
     </Section>
   );

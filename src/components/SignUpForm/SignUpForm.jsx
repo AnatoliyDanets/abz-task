@@ -5,9 +5,9 @@ import UserSuccess from "../UserSuccess";
 import ButtonsAuth from "../ButtonsAuth";
 import { addUsers, getToken, getPositions } from "../../services/fetch-api";
 import { Error } from "../Errors";
-import s from "./CreateForm.module.scss";
+import s from "./SignUpForm.module.scss";
 
-export default function CreateForm({ fetchApi }) {
+export default function SignUpForm({ fetchApi }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
