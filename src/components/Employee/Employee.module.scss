@@ -1,7 +1,9 @@
 @import "../../stylesheet/utils/vars.scss";
 @import "../../stylesheet/utils/mixin.scss";
 
-.employee__item {
+// card сотрудника, сетка сделана с помощью отрицательных маржинов, так же сделан скрол, если текст больше контейнера
+.employee__card {
+  @include flex-column;
   padding: 20px;
   background-color: $secondary-background-color;
   border-radius: 10px;
@@ -19,8 +21,8 @@
     margin-top: 29px;
   }
 }
-
-.employee__item:not(:last-child) {
+// маржин на последнем элементе  неуказывается если mobile
+.employee__card:not(:last-child) {
   margin-bottom: 20px;
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
@@ -33,6 +35,7 @@
   border-radius: 50%;
   margin-bottom: 20px;
 }
+
 .employee__title {
   margin-bottom: 20px;
   @include font(400, 16px, 26px);
@@ -40,26 +43,25 @@
   color: $secondary-font-color;
 }
 .employee__text {
-  font-style: normal;
   @include font(400, 16px, 26px);
   text-align: center;
   color: $secondary-font-color;
 }
 
-.employee__item::-webkit-scrollbar {
+.employee__card::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
 .employee__link {
   position: relative;
-  display: block;
   padding: 0;
   margin: 0;
-  font-style: normal;
   @include font(400, 16px, 26px);
   text-align: center;
   color: $secondary-font-color;
 }
+
+// воспользовался библеотекой react-tooltip. Везде указал !important, чтобы перебить default стили
 .employee__tooltip {
   padding: 2px 16px !important;
   font-weight: 400 !important;

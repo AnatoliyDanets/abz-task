@@ -1,19 +1,16 @@
 @import "../../stylesheet/utils/vars.scss";
 @import "../../stylesheet/utils/mixin.scss";
 
+//стили для формы
 .form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flex-column;
 }
 .form__wrapper {
   display: flex;
   flex-direction: column;
 }
 .form__inputs_wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flex-column;
 }
 .form__inputs_wrapper:not(:last-child) {
   margin-bottom: 43px;
@@ -21,6 +18,8 @@
 .form__input_wrapper {
   position: relative;
 }
+
+//стили для инпутов + стили валидации
 .form__input {
   padding: 0;
   width: 326px;
@@ -48,6 +47,7 @@
   }
 }
 
+// стили для ошибки, если не валидное поле
 .form__error {
   position: absolute;
   bottom: 34px;
@@ -61,6 +61,8 @@
   display: flex;
   flex-direction: column;
 }
+
+// стили для ошибки интупа телефона, если не валидное поле,
 .form__error_tel {
   position: absolute;
   bottom: -16px;
@@ -70,16 +72,6 @@
   z-index: 100;
 }
 
-.form__error_file {
-  font-family: "Asap", sans-serif;
-  position: absolute;
-  bottom: 34px;
-  left: 16px;
-  @include font(400, 12px, 14px);
-
-  color: $label-input-error;
-  z-index: 100;
-}
 .form__label {
   position: absolute;
   bottom: -16px;
@@ -89,14 +81,17 @@
   text-indent: 16px;
 }
 
+// контейнер для инпут радио и инпут file
 .form__inputs_files {
   display: flex;
   flex-direction: column;
 }
 
+// стили для инпут радио
 .form__radio {
   display: flex;
   flex-direction: column;
+  // title списка
   &_title {
     padding: 0;
     margin: 0;
@@ -105,6 +100,7 @@
     @include font(400, 16px, 26px);
     color: $secondary-font-color;
   }
+  // стили списка
   &_list {
     margin: 0;
     padding: 0;
@@ -113,13 +109,13 @@
     flex-direction: column;
     justify-content: center;
   }
-
+  // стили выравнивания лишек
   &_item {
     position: relative;
     display: flex;
     align-items: baseline;
   }
-
+  // скрытие интупа радио
   &_input {
     margin-right: 18px;
     visibility: hidden;
@@ -127,13 +123,13 @@
   &_item:not(:last-child) {
     margin-bottom: 7px;
   }
-
+  // label styles
   &_label {
     font-style: normal;
     @include font(400, 16px, 26px);
     color: $secondary-font-color;
   }
-
+  // делаем  кастомный радио, большой диаметр
   &_label::after {
     content: "";
     position: absolute;
@@ -146,6 +142,7 @@
     border-radius: 50%;
     border: 1px solid $border-input-color;
   }
+  // делаем  кастомный радио, маленький диаметр для check, пока не check , opacity=0
 
   &_label::before {
     content: "";
@@ -160,9 +157,11 @@
     opacity: 0;
   }
 
+  // при check меняем цвет бордера
   &_input:checked + &_label::after {
     border: 1px solid $secondary-color;
   }
+  // при check меняем цвет элемента и делаем его видимым opacity=1
   &_input:checked + &_label::before {
     background-color: $secondary-color;
     opacity: 1;
@@ -174,11 +173,11 @@
   height: 54px;
   margin-bottom: 50px;
 }
-
+// прячем основной инпут file
 .form__input_file {
   visibility: hidden;
 }
-
+// делаем из label кастомный инпут  file
 .form__file_label {
   position: absolute;
   top: 0;
@@ -211,7 +210,7 @@
     width: 296px;
   }
 }
-
+// делаем такой же инпут файл только для ошибки, при условии будет показан один или другой
 .form__file_error {
   position: absolute;
   top: 0;
@@ -242,4 +241,15 @@
   @media screen and (min-width: 768px) {
     width: 296px;
   }
+}
+
+// Cтранный момент, что в единственном месте у  текста ошибки инпут файла другой fonts)
+.form__error_file {
+  font-family: $secondary-font-family;
+  position: absolute;
+  bottom: 34px;
+  left: 16px;
+  @include font(400, 12px, 14px);
+  color: $label-input-error;
+  z-index: 100;
 }

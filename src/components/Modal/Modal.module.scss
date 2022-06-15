@@ -1,6 +1,7 @@
 @import "../../stylesheet/utils/vars.scss";
 @import "../../stylesheet/utils/mixin.scss";
 
+// backdrop занимает всё пространства и модалка которая размещена по центру
 .backdrop {
   position: fixed;
   top: 0;

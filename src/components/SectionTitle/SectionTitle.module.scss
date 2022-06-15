@@ -1,9 +1,9 @@
 @import "../../stylesheet/utils/vars.scss";
 @import "../../stylesheet/utils/mixin.scss";
 
+// стили для заголовка: h2
 .title {
   margin-bottom: 50px;
-  font-style: normal;
   @include font(400, 40px, 40px);
   @include flex-center;
   text-align: center;

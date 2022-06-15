@@ -1,6 +1,8 @@
 @import "../../stylesheet/utils/vars.scss";
 @import "../../stylesheet/utils/mixin.scss";
 
+
+// Под retina, ,будет загружаться тот или иной имедж
 .hero {
   padding: 40px 0px 71px;
   text-align: center;

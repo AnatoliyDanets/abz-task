@@ -3,14 +3,11 @@
 
 .header {
   padding: 13px 0px;
-
-
 }
-.header__wrapper{
+.header__wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
 }
 .header__logo {
   display: flex;
@@ -20,7 +17,7 @@
     margin-right: unset;
   }
 }
-.header__logo_icon{
+.header__logo_icon {
   margin-right: 1.97px;
 }
 

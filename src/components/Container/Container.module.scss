@@ -1,22 +1,22 @@
+// стили для контейнера и медиа правила под разные утсройства
 .container {
-
   margin-left: auto;
   margin-right: auto;
 
   @media screen and (min-width: 360px) {
     padding: 0px 16px;
-    max-width: 360px;
+    max-width: 328px;
   }
   @media screen and (min-width: 768px) {
     padding: 0px 32px;
-    max-width: 768px;
+    max-width: 704px;
   }
 
   @media screen and (min-width: 1024px) {
     padding: 0px 60px;
-    max-width: 1024px;
+    max-width: 904px;
   }
-  
+
   @media screen and (min-width: 1170px) {
     padding: 0;
     min-width: 1170px;

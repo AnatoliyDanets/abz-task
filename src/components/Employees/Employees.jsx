@@ -17,6 +17,8 @@ export default function Employees() {
   const [page, setPage] = useState(2);
   const [hidden, setHidden] = useState(true);
   const [show, setShow] = useState(false);
+  const defaultImage =
+    "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y";
 
   const fetchApi = useCallback(() => {
     getUsers(1)
@@ -67,7 +69,7 @@ export default function Employees() {
                   text={position}
                   email={email}
                   tel={phone}
-                  photo={photo}
+                  photo={photo.includes("png") ? defaultImage : photo}
                 />
               ))}
           </ul>

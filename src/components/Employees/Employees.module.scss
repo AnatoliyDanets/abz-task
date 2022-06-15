@@ -1,6 +1,8 @@
 @import "../../stylesheet/utils/vars.scss";
 @import "../../stylesheet/utils/mixin.scss";
 
+// сетка сделана с помощью отрицательных маржинов, так же сделан скрол, если текст больше контейнера card
+
 .employees {
   padding: 140px 0px 70px;
   text-align: center;

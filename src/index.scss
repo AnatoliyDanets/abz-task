@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Asap&family=Nunito+Sans&family=Roboto+Flex:opsz,wght@8..144,700&display=swap');
 @import-normalize;
-@import './stylesheet/base/base.scss';
+@import "./stylesheet/base/base.scss";
+@import "./stylesheet/utils/vars.scss";
+
 body {
   margin: 0;
-  font-family: "Nunito Sans", sans-serif;
+  font-family: $primary-font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
