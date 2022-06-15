@@ -1,7 +1,7 @@
+import Section from "../Section";
+import Container from "../Container";
+import ButtonsAuth from "../ButtonsAuth";
 import s from "./Hero.module.scss";
-import { Section } from "../Section/Section";
-import ButtonsAuth from "../ButtonsAuth/ButtonsAuth";
-import Container from "../Container/Container";
 
 export default function Hero() {
   return (

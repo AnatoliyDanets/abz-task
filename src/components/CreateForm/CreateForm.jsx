@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import Modal from "../Modal/Modal";
-import UserSuccess from "../UserSuccess/UserSuccess";
-import ButtonsAuth from "../ButtonsAuth/ButtonsAuth";
+import Modal from "../Modal";
+import UserSuccess from "../UserSuccess";
+import ButtonsAuth from "../ButtonsAuth";
 import { addUsers, getToken, getPositions } from "../../services/fetch-api";
 import { Error } from "../Errors";
 import s from "./CreateForm.module.scss";
@@ -96,9 +96,14 @@ export default function CreateForm({ fetchApi }) {
 
   const handleFileChange = () => {
     const arrStr = photo.current.files[0]?.name.split(".");
-    const newStr = [...arrStr[0].slice(0, 6), ".", ...arrStr[1]].join("");
-
-    setLoad(newStr ?? "Upload your photo");
+    if (arrStr) {
+      const correctStrVisible = [
+        ...arrStr[0]?.slice(0, 6),
+        ".",
+        ...arrStr[1],
+      ].join("");
+      setLoad(correctStrVisible ?? "Upload your photo");
+    }
 
     const size = 5242880;
 

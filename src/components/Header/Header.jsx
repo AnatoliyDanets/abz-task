@@ -1,8 +1,9 @@
-import s from "./Header.module.scss";
 import { ReactComponent as Logo } from "../../images/icon/Group.svg";
 import { ReactComponent as TextLogo } from "../../images/icon/TextLogo.svg";
-import ButtonsAuth from "../ButtonsAuth/ButtonsAuth";
-import Container from "../Container/Container";
+import ButtonsAuth from "../ButtonsAuth";
+import Container from "../Container";
+import s from "./Header.module.scss";
+
 export default function Header() {
   // const componentRef = useRef()
   // const { width, height } = useContainerDimensions(componentRef)

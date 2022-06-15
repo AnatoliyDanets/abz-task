@@ -1,11 +1,9 @@
-import Loader from "./components/Loader/Loader";
+import Loader from "./components/Loader";
 import loadable from "@loadable/component";
-const Header = loadable(() => import("./components/Header/Header"));
-const MainComponent = loadable(() =>
-  import("./components/MainComponent/MainComponent"), {
-    Loader: () => Loader
-  })
-
+const Header = loadable(() => import("./components/Header"));
+const MainComponent = loadable(() => import("./components/MainComponent"), {
+  Loader: () => Loader,
+});
 
 function App() {
   return (

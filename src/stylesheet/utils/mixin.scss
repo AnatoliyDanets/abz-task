@@ -5,7 +5,7 @@
     align-items: center;
   }
   
-  // миксин для шрифтов, например- @include font(400, 18px, 28px, 0.03em);
+  // миксин для шрифтов, например- @include font(400, 18px, 28px);
   @mixin font($fw, $fs, $lh) {
     font-weight: $fw;
     font-size: $fs;

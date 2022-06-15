@@ -1,6 +1,6 @@
 import { ReactComponent as UserResolve } from "../../images/icon/successImage.svg";
-import { Section } from "../Section/Section";
-import SectionTitle from "../SectionTitle/SectionTitle";
+import Section from "../Section";
+import SectionTitle from "../SectionTitle";
 import s from "./UserSuccess.module.scss";
 
 export default function UserSuccess({ type, onClick }) {

@@ -1,15 +1,15 @@
 import { useEffect, useState, useCallback } from "react";
-import { Section } from "../Section/Section";
-import Container from "../Container/Container";
-import SectionTitle from "../SectionTitle/SectionTitle";
-import ButtonsAuth from "../ButtonsAuth/ButtonsAuth";
-import Loader from "../Loader/Loader";
+import Section from "../Section";
+import Container from "../Container";
+import SectionTitle from "../SectionTitle";
+import ButtonsAuth from "../ButtonsAuth";
+import Loader from "../Loader";
 import { getUsers } from "../../services/fetch-api";
 import loadable from "@loadable/component";
 import s from "./Employees.module.scss";
 
-const Employee = loadable(() => import("../Employee/Employee"));
-const CreateForm = loadable(() => import("../CreateForm/CreateForm"));
+const Employee = loadable(() => import("../Employee"));
+const SectionAddEmployees = loadable(() => import("../SectionAddEmployees"));
 
 export default function Employees() {
   const [users, setUsers] = useState([]);
@@ -81,12 +81,7 @@ export default function Employees() {
           )}
         </Container>
       </Section>
-      <Section className={s.addEmployee}>
-        <Container color={{ backgroundColor: "#f8f8f8" }}>
-          <SectionTitle title={"Working with POST request"} />
-          <CreateForm fetchApi={fetchApi} />
-        </Container>
-      </Section>
+      <SectionAddEmployees fetchApi={fetchApi} />
     </>
   );
 }
