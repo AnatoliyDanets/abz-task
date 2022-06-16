@@ -346,7 +346,18 @@ export default function SignUpForm({ fetchApi }) {
       </form>
       {modal && (
         <Modal onClose={toggleModal}>
-          <UserSuccess type={"button"} onClick={toggleModal} />
+          <UserSuccess
+            type={"button"}
+            onClick={() => {
+              toggleModal();
+              window.scrollTo(
+                0,
+                window.document.body.offsetHeight -
+                  window.document.body.offsetHeight +
+                  650
+              );
+            }}
+          />
         </Modal>
       )}
     </>

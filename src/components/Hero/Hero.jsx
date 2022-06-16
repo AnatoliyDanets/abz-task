@@ -19,6 +19,9 @@ export default function Hero() {
         </p>
         <ButtonsAuth
           width={{ width: "100px", margin: "0 auto" }}
+          onClick={() =>
+            window.scrollTo(0, window.document.body.offsetHeight - 942)
+          }
           children={"Sign up"}
         />
       </Container>
