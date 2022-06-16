@@ -8,6 +8,7 @@
 .form__wrapper {
   display: flex;
   flex-direction: column;
+  margin-bottom: 50px;
 }
 .form__inputs_wrapper {
   @include flex-column;
@@ -171,7 +172,6 @@
 .file {
   position: relative;
   height: 54px;
-  margin-bottom: 50px;
 }
 // прячем основной инпут file
 .form__input_file {
