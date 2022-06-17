@@ -247,7 +247,7 @@
 .form__error_file {
   font-family: $secondary-font-family;
   position: absolute;
-  bottom: 34px;
+  bottom:-16px;
   left: 16px;
   @include font(400, 12px, 14px);
   color: $label-input-error;
