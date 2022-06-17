@@ -6,9 +6,6 @@
 .employees {
   padding: 140px 0px 70px;
   text-align: center;
-  &::-webkit-scrollbar {
-    width: 0;
-  }
 }
 
 .employees__list {

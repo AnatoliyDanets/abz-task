@@ -1,15 +1,13 @@
 @import "../../stylesheet/utils/vars.scss";
 @import "../../stylesheet/utils/mixin.scss";
 
-// card сотрудника, сетка сделана с помощью отрицательных маржинов, так же сделан скрол, если текст больше контейнера
+// card сотрудника, сетка сделана с помощью отрицательных маржинов
 .employee__card {
   @include flex-column;
   padding: 20px;
   background-color: $secondary-background-color;
   border-radius: 10px;
-  overflow: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+
   @media screen and (min-width: 768px) {
     flex-basis: calc(100% / 2 - 56px);
     margin-left: 16px;
@@ -48,10 +46,7 @@
   color: $secondary-font-color;
 }
 
-.employee__card::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
+
 .employee__link {
   position: relative;
   padding: 0;

@@ -1,15 +1,16 @@
 import ReactTooltip from "react-tooltip";
-
+import { CorrectString } from "../CorrectString";
 import s from "./Employee.module.scss";
 
 export default function Employee({ id, title, text, email, tel, photo }) {
+
   return (
     <li key={id} className={s.employee__card}>
       <img src={photo} className={s.employee__image} alt={title} />
-      <h3 className={s.employee__title}>{title}</h3>
-      <p className={s.employee__text}>{text}</p>
+      <h3 className={s.employee__title}>{CorrectString(title)}</h3>
+      <p className={s.employee__text}>{CorrectString(text)}</p>
       <a data-tip={email} href={`mailto:${email}`} className={s.employee__link}>
-        {email}
+        {CorrectString(email)}
       </a>
       <a data-tip={tel} href={`tel:${tel}`} className={s.employee__link}>
         {tel}
