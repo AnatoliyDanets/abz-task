@@ -118,8 +118,13 @@ export default function SignUpForm({ fetchApi }) {
     if (photo.current.files[0]?.type !== "image/jpeg") {
       setErrorPhoto(true);
       setTextErrorPhoto("Only format jpeg");
+      if (!photo.current.files[0]?.name) {
+        setErrorPhoto(false);
+        setLoad("Upload your photo")
+        return;
+      }
       return;
-    } else {
+    }   else {
       setErrorPhoto(false);
     }
 
