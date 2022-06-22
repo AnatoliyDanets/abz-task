@@ -120,11 +120,11 @@ export default function SignUpForm({ fetchApi }) {
       setTextErrorPhoto("Only format jpeg");
       if (!photo.current.files[0]?.name) {
         setErrorPhoto(false);
-        setLoad("Upload your photo")
+        setLoad("Upload your photo");
         return;
       }
       return;
-    }   else {
+    } else {
       setErrorPhoto(false);
     }
 
@@ -241,7 +241,6 @@ export default function SignUpForm({ fetchApi }) {
                 pattern="[a-zA-Z'-'\s]*"
                 minLength={2}
                 maxLength={60}
-                style={{ marginBottom: "50px" }}
                 required
               />
             </div>
@@ -260,7 +259,6 @@ export default function SignUpForm({ fetchApi }) {
                 pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
                 minLength={2}
                 maxLength={100}
-                style={{ marginBottom: "50px" }}
                 required
               />
             </div>

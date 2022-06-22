@@ -2,8 +2,7 @@
 @import "../../stylesheet/utils/mixin.scss";
 
 // card сотрудника, сетка сделана с помощью отрицательных маржинов
-.employee__card {
-  @include flex-column;
+.employee {
   padding: 20px;
   background-color: $secondary-background-color;
   border-radius: 10px;
@@ -19,8 +18,12 @@
     margin-top: 29px;
   }
 }
+
+.employee__card {
+  @include flex-column;
+}
 // маржин на последнем элементе  неуказывается если mobile
-.employee__card:not(:last-child) {
+.employee:not(:last-child) {
   margin-bottom: 20px;
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
@@ -46,9 +49,10 @@
   color: $secondary-font-color;
 }
 
-
 .employee__link {
   position: relative;
+  display: flex;
+  flex-direction: column;
   padding: 0;
   margin: 0;
   @include font(400, 16px, 26px);
